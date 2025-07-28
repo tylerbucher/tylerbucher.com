@@ -7,7 +7,7 @@ import {
     SimpleGrid,
     Container,
     rem,
-    useMantineTheme, Paper, ThemeIcon, Grid, List, Button, Flex, Divider, ActionIcon, Tooltip,
+    useMantineTheme, Paper, ThemeIcon, Grid, List, Button, Flex, Divider, ActionIcon, Tooltip, Pill, Box,
 } from '@mantine/core';
 import {
     IconGauge,
@@ -24,13 +24,16 @@ import React from "react";
 const mockdata = [
     {
         id: 'apex',
-        title: 'Software Engineer II, APEX',
+        title: 'Senior Software Engineer, APEX',
         subTitle: 'Austin, Texas — 2023 - present',
         items: [
             'Audit cross team pull requests to ensure quality code in production and facilitate group discussion on practices and solutions.',
             'Maintain and enhance mission critical legacy systems used by small and large clients every day.',
             'Investigate and document new solutions / processes for growing client and business needs.',
             'Collaborate with other teams and staff engineers to effectively roll out new systems and solutions.'
+        ],
+        tech: [
+            'GCP', 'Kubernetes', 'Mono-repo', 'Micro services', 'Monolith', 'Kafka', 'GRPC', 'REST', 'Java', 'SQL', 'MongoDB'
         ]
     },{
         id: 'bc',
@@ -40,6 +43,9 @@ const mockdata = [
             'Engaged closely with direct team and cross-functional teams to architect and maintain mission-critical microservices.',
             'Mentored and empowered SE1s, contributing to their skill development and professional growth.',
             'Actively participated in team code reviews, ensuring the delivery of high-quality code and fostering valuable learning experiences for all team members.'
+        ],
+        tech: [
+            'GCP', 'Kubernetes', 'Micro services', 'Rabbit MQ', 'Redis', 'Scala'
         ]
     },{
         id: 'sf',
@@ -50,6 +56,9 @@ const mockdata = [
             'Crafted responsive front ends using React and deployed applications as Docker containers for optimal scalability.',
             'Engineered and enhanced high-throughput JAVA services, aligning them with project objectives.',
             'Contributed to CUDA and RF (radio frequency) code bases, enhancing the overall end-user experience.'
+        ],
+        tech: [
+            'Embedded', 'Java', 'RF', 'ML', 'CUDA', 'GRPC', 'REST'
         ]
     },{
         id: 'ees',
@@ -61,11 +70,15 @@ const mockdata = [
             'Collaborated with internal teams to design and implement APIs, thereby enhancing the end-user experience.',
             'Implemented daily bug fixes and efficiently completed Team Foundation work items.',
             'Collaborated with team members to conceptualize and execute projects in adherence to specifications.'
+        ],
+        tech: [
+            'ASP.NET', 'Lucene', 'IIS', 'IBM DB'
         ]
     }
 ];
 
 function Resume() {
+    const theme = useMantineTheme();
     const features = mockdata.map((feature) => (
         <Paper withBorder radius="md" className={classes.card} key={feature.title} id={feature.id}>
             <ThemeIcon
@@ -87,6 +100,11 @@ function Resume() {
                     <List.Item key={index}>{item}</List.Item>
                 ))}
             </List>
+            <Flex mt='sm' wrap={"wrap"} gap={4}>
+                {feature.tech.map((item, index) => (
+                    <Pill key={index} bg={theme.colors.dark[5]}>{item}</Pill>
+                ))}
+            </Flex>
         </Paper>
     ));
 
